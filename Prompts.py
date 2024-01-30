@@ -62,14 +62,8 @@ for each in texts:
         **inputs, max_new_tokens=2300, use_cache=True, do_sample=True,
         temperature=0.2, top_p=0.95)
 
-#     if "****++++****" in tokenizer.batch_decode(outputs)[0].replace(each,"").lstrip().rstrip().strip():
     bbb=tokenizer.batch_decode(outputs)[0].replace(each,"").lstrip().rstrip().strip().split("****++++****")[-1]
-#     else:
-#         bbb=tokenizer.batch_decode(outputs)[0].replace(each,"").lstrip().rstrip().strip().split("Q_A:")[-1]
 
-#                 print(bbb)
-
-#     if bbb.count("?")>1:
     QA=QA+ " \n \n "+bbb+" \n \n "
     del outputs
     del inputs
@@ -78,7 +72,6 @@ for each in texts:
 
 text =message+ " \n $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ \n \n "+ QA +"\n"
 del QA
-#             del text_splitter
 gc.collect()
 torch.cuda.empty_cache()
 print("+++++++++++++++++++++ done +++++++++++++++++++++++++")
