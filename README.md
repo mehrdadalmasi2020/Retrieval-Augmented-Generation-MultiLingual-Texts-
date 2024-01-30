@@ -10,7 +10,7 @@ If you try to answer questions such as the address of a given company's headquar
 
 2) Use cleansing.py to do the data cleansing on the generated file (removing irrelevant lines)
 
-3) Use insert.py to insert data onto ChromaDB (a vector database)
+3) Use insert.py to insert data onto ChromaDB (a vector database) # Note that only the question part is used to determine the word embedding vectors
 
 4) Run RAG.py (based on Streamlit)
 
