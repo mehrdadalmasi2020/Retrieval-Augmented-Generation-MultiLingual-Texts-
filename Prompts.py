@@ -1,3 +1,4 @@
+import os
 path='/mnt/data/'
 
 
