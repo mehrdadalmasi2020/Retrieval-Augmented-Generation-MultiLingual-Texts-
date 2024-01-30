@@ -25,7 +25,7 @@ gc.collect()
 torch.cuda.empty_cache()
 
 # create a database
-client = chromadb.PersistentClient(path="/home/mehrdad/db")
+client = chromadb.PersistentClient(path="/home/user/db")
 path='/mnt/data/'
 # create a table
 collection = client.get_or_create_collection(name="test")
