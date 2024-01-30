@@ -1,4 +1,4 @@
-path='/mnt/data/c2dh-dri/'
+path='/mnt/data/'
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
 from semantic_text_splitter import HuggingFaceTextSplitter
