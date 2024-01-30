@@ -4,7 +4,7 @@ path='/mnt/data/'
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
 import os
-device = "cuda"
+device = "cuda" # use CPU if needed
 print("start_model")
 
 model = AutoModelForCausalLM.from_pretrained(
