@@ -120,8 +120,7 @@ tokenizer22 = Tokenizer.from_pretrained("bert-base-uncased")
 splitter = HuggingFaceTextSplitter(tokenizer22, trim_chunks=True)
 chunks = splitter.chunks(message, max_tokens)
 texts = chunks
-del tokenizer22
-del splitter
+
 gc.collect()
 torch.cuda.empty_cache()            
 del chunks
@@ -136,7 +135,7 @@ for each in texts:
     prompt = "I give you a text. If it is not in English, translate it into English. You must write twenty 'Q_A' for me. Each 'Q_A' must have a question with an answer to that question. You must always mention the entire name of the company for each question. The text for generating Q_A is as follows: \n\n"+each+" \n ****++++**** \n"#.replace("\n","")
     prompt=prompt.replace("  "," ")
     prompt=prompt.lstrip().rstrip().strip()
-    inputs = tokenizer(
+    inputs = tokenizer22(
         prompt,
         return_tensors="pt").to(device)
 
@@ -144,7 +143,7 @@ for each in texts:
         **inputs, max_new_tokens=2300, use_cache=True, do_sample=True,
         temperature=0.2, top_p=0.95)
 
-    bbb=tokenizer.batch_decode(outputs)[0].replace(each,"").lstrip().rstrip().strip().split("****++++****")[-1]
+    bbb=tokenizer22.batch_decode(outputs)[0].replace(each,"").lstrip().rstrip().strip().split("****++++****")[-1]
 
     QA=QA+ " \n \n "+bbb+" \n \n "
     del outputs
