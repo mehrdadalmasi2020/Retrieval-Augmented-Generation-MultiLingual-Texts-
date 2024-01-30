@@ -1,6 +1,16 @@
 import os
 path='/mnt/data/'
 
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
+import os
+device = "cuda"
+print("start_model")
+
+model = AutoModelForCausalLM.from_pretrained(
+    "Open-Orca/Mistral-7B-OpenOrca").to(device)
+tokenizer = AutoTokenizer.from_pretrained(
+    "Open-Orca/Mistral-7B-OpenOrca")
 
 Document='''
 Mercedes-Benz (German pronunciation: [mɛʁˌtseːdəs ˈbɛnts, -dɛs -] ⓘ),[6][7] commonly referred to as Mercedes and sometimes as Benz, is a German luxury and commercial vehicle automotive brand established in 1926. Mercedes-Benz AG (a Mercedes-Benz Group subsidiary established in 2019) is headquartered in Stuttgart, Baden-Württemberg, Germany.[1] Mercedes-Benz AG produces consumer luxury vehicles and light commercial vehicles badged as Mercedes-Benz. From November 2019 onwards, Mercedes-Benz-badged heavy commercial vehicles (trucks and buses) are managed by Daimler Truck, a former part of the Mercedes-Benz Group turned into an independent company in late 2021. In 2018, Mercedes-Benz was the largest brand of premium vehicles in the world, having sold 2.31 million passenger cars.[8]
