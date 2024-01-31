@@ -4,13 +4,11 @@ path='/mnt/data/'
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
 import os
-device = "cuda" # use cpu if needed
+device = "cpu" # use cuda if you have
 print("start_model")
 
-model = AutoModelForCausalLM.from_pretrained(
-    "Open-Orca/Mistral-7B-OpenOrca").to(device)
-tokenizer = AutoTokenizer.from_pretrained(
-    "Open-Orca/Mistral-7B-OpenOrca")
+model = AutoModelForCausalLM.from_pretrained("Open-Orca/Mistral-7B-OpenOrca").to(device)
+tokenizer = AutoTokenizer.from_pretrained("Open-Orca/Mistral-7B-OpenOrca")
 
 Document='''
 Mercedes-Benz (German pronunciation: [mɛʁˌtseːdəs ˈbɛnts, -dɛs -] ⓘ),[6][7] commonly referred to as Mercedes and sometimes as Benz, is a German luxury and commercial vehicle automotive brand established in 1926. Mercedes-Benz AG (a Mercedes-Benz Group subsidiary established in 2019) is headquartered in Stuttgart, Baden-Württemberg, Germany.[1] Mercedes-Benz AG produces consumer luxury vehicles and light commercial vehicles badged as Mercedes-Benz. From November 2019 onwards, Mercedes-Benz-badged heavy commercial vehicles (trucks and buses) are managed by Daimler Truck, a former part of the Mercedes-Benz Group turned into an independent company in late 2021. In 2018, Mercedes-Benz was the largest brand of premium vehicles in the world, having sold 2.31 million passenger cars.[8]
@@ -125,17 +123,17 @@ for line in data:
     message=message+line
 
 max_tokens = 400
-# Optionally can also have the splitter not trim whitespace for you
 tokenizer22 = Tokenizer.from_pretrained("bert-base-uncased")
 splitter = HuggingFaceTextSplitter(tokenizer22, trim_chunks=True)
 chunks = splitter.chunks(message, max_tokens)
 texts = chunks
-
-gc.collect()
-torch.cuda.empty_cache()            
+del tokenizer22
+del splitter        
 del chunks
 gc.collect()
 torch.cuda.empty_cache()
+
+
 QA=""
 for each in texts:
     each= header+ " \n \n "+each
@@ -145,7 +143,7 @@ for each in texts:
     prompt = "I give you a text. If it is not in English, translate it into English. You must write twenty 'Q_A' for me. Each 'Q_A' must have a question with an answer to that question. You must always mention the entire name of the company for each question. The text for generating Q_A is as follows: \n\n"+each+" \n ****++++**** \n"#.replace("\n","")
     prompt=prompt.replace("  "," ")
     prompt=prompt.lstrip().rstrip().strip()
-    inputs = tokenizer22(
+    inputs = tokenizer(
         prompt,
         return_tensors="pt").to(device)
 
@@ -153,7 +151,7 @@ for each in texts:
         **inputs, max_new_tokens=2300, use_cache=True, do_sample=True,
         temperature=0.2, top_p=0.95)
 
-    bbb=tokenizer22.batch_decode(outputs)[0].replace(each,"").lstrip().rstrip().strip().split("****++++****")[-1]
+    bbb=tokenizer.batch_decode(outputs)[0].replace(each,"").lstrip().rstrip().strip().split("****++++****")[-1]
 
     QA=QA+ " \n \n "+bbb+" \n \n "
     del outputs
