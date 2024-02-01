@@ -5,7 +5,6 @@ from chromadb import Documents
 from chromadb.utils import embedding_functions
 import sys
 import os
-import os
 import time
 from langchain.chains import MapReduceDocumentsChain, LLMChain, ReduceDocumentsChain, StuffDocumentsChain
 from langchain.document_loaders import NewsURLLoader
