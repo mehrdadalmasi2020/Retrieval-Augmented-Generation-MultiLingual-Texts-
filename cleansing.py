@@ -16,3 +16,4 @@ for e in QApart[1].split("\n"):
         print(e)
     if "?" in e :
         Flag=True
+return CleanText
