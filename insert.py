@@ -34,7 +34,7 @@ sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFuncti
 print("model loaded")
 
 
-for data in CleanText:  #CleanText has been produced in the cleansing.py file.
+for data in Clean('/mnt/data/'+"/try/"+"test.txt"):  #CleanText has been produced in the cleansing.py file.
     
     doc=data.split("\n")
     documents=" "
