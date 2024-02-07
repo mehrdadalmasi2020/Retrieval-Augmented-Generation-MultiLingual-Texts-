@@ -1,4 +1,4 @@
-path='/mnt/data/c2dh-dri/'
+path='/mnt/data/'
 read=open(path+"/try/"+"test.txt","r",encoding='utf-8')
 wholeText=""
 for e in read:
