@@ -5,7 +5,6 @@ from chromadb import Documents
 import chromadb
 import sys
 import os
-import replicate
 import torch
 import gc
 from tokenizers import Tokenizer
