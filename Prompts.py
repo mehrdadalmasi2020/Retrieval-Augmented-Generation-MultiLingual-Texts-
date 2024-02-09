@@ -176,8 +176,6 @@ try:
     del outputs
 except:
     pass
-gc.collect()
-torch.cuda.empty_cache()
-gc.collect()
 del texts
+gc.collect()
 torch.cuda.empty_cache()
