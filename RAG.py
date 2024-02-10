@@ -89,8 +89,8 @@ Answer the question below from the context below in several sentences. You must 
 {question} [/INST] </s>
 """
 
-question_p = query_string#"""whcich company have a branch in Panama?"""
-context_p = doc #""" On August 10 said that its arm JSW Neo Energy has agreed to buy a portfolio of 1753 mega watt renewable energy generation capacity from Mytrah Energy India Pvt Ltd for Rs 10,530 crore."""
+question_p = query_string
+context_p = doc 
 prompt = PromptTemplate(template=template, input_variables=["question","context"])
 llm_chain = LLMChain(prompt=prompt, llm=llm)
 response = llm_chain.run({"question":question_p,"context":context_p})
