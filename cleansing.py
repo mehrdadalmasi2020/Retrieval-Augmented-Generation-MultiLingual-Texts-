@@ -1,4 +1,4 @@
-def Clean(path):
+def Cleansing(path):
     read=open(path,"r",encoding='utf-8')
     wholeText=""
     for e in read:
