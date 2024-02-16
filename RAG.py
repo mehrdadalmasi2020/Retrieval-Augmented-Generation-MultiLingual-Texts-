@@ -17,12 +17,12 @@ import gc
 from gensim.parsing.preprocessing import remove_stopwords
 from gensim.parsing.preprocessing import preprocess_documents
  
-sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(model_name="microsoft/Orca-2-7b")
 from chromadb.utils import embedding_functions
 
 
 # Initialize Chromadb client
 number_of_tables=0
+sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(model_name="microsoft/Orca-2-7b")
 client = chromadb.PersistentClient(path="/home/user/db")
 collection = client.get_or_create_collection(
     name="test", embedding_function=sentence_transformer_ef
@@ -51,7 +51,7 @@ st.write("str_question: ",str_question)
 
 # Perform the Chromadb query.
 results = collection.query(
-    query_texts=[str_question],#[query_string.replace("(","").replace(")","").replace("?","")],
+    query_texts=[str_question],
     n_results=10,
 )
 st.write("the second step is started")
