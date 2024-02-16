@@ -24,7 +24,7 @@ from chromadb.utils import embedding_functions
 number_of_tables=0
 sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(model_name="microsoft/Orca-2-7b")
 client = chromadb.PersistentClient(path="/home/user/db")
-collection = client.get_or_create_collection(
+collection = client.get_collection(
     name="test", embedding_function=sentence_transformer_ef
 )
 
