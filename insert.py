@@ -2,7 +2,6 @@
 import chromadb
 import json
 from chromadb import Documents
-import chromadb
 import sys
 import os
 import torch
@@ -10,25 +9,18 @@ import gc
 from tokenizers import Tokenizer
 from gensim.parsing.preprocessing import remove_stopwords
 from gensim.parsing.preprocessing import preprocess_documents
-import chromadb
 from chromadb.config import Settings
-import json
-import chromadb
 import replicate
-from chromadb import Documents
 from vectorhub.encoders.text.tfhub import Bert2Vec
 from vectorhub.bi_encoders.qa.torch_transformers import DPR2Vec
 from chromadb.utils import embedding_functions
 
-gc.collect()
-torch.cuda.empty_cache()
-
 # create a database
 client = chromadb.PersistentClient(path="/home/user/db")
-path='/mnt/data/'
 # create a table
 collection = client.get_or_create_collection(name="test")
 
+#load the transformer
 sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(model_name="microsoft/Orca-2-7b")
 print("model loaded")
 
@@ -58,11 +50,6 @@ for data in cleansing('/mnt/data/try/test.txt"):  # cleansing.py file.
     except:
         pass
 
-    gc.collect()
-    torch.cuda.empty_cache()            
-
-
-    import fnmatch
     c=0
     for v in splits:
         tempsplits=[]
