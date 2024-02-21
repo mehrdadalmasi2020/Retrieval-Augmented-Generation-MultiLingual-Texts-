@@ -1,9 +1,10 @@
 # Retrieval-Augmented-Generation-MultiLingual-Texts-
 I strongly recommend studying the following links before the rest of this page.
 
-1)https://medium.com/@mehrdad.al.2023/build-a-retrieval-augmented-generation-using-gensim-chromadb-and-mistral-in-the-python-c3c0222a3238
+1) https://medium.com/@mehrdad.al.2023/build-a-retrieval-augmented-generation-using-gensim-chromadb-and-mistral-in-the-python-c3c0222a3238
 https://github.com/mehrdadalmasi2020/Improve-the-first-step-of-building-Retrieval-Augmented-RAG-using-Gensim-ChromaDB-and-Mistral-in-/blob/main/Vector_DataBase.ipynb
-2)https://medium.com/@mehrdad.al.2023/how-do-we-do-the-second-step-of-building-the-retrieval-augmented-generation-rag-in-python-6ff7aa9e8cf4
+
+2) https://medium.com/@mehrdad.al.2023/how-do-we-do-the-second-step-of-building-the-retrieval-augmented-generation-rag-in-python-6ff7aa9e8cf4
 https://github.com/mehrdadalmasi2020/second-step-of-building-the-Retrieval-Augmented-Generation-RAG-in-Python/edit/main/README.md
 
 Here, we learn how to build a Retrieval-Augmented Generation (RAG) for multilingual texts. Since RAG works based on the information provided by vector stores, having the same vector standard for storing and retrieving data from vector databases is essential.
